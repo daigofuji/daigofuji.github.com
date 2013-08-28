@@ -7,23 +7,28 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>{{ page.title }}</title>
-  <meta name="description" content="{{ page.title }}" />
-  <meta name="keywords" content="{{ page.keywords }}" />
+  <title>{{ page.title }} - {{ site.name }}</title>
+  <meta name="description" content="{{ page.title }} - {{ site.name }}" />
+  <meta name="keywords" content="{{ page.keywords }}, {{ site.keywords }}" />
 
   <!-- Mobile Specific Metas. Consider: maximum-scale=1
   ================================================== -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- CSS  Get: http://www.google.com/fonts/
+  http://stackoverflow.com/questions/7985081/how-to-deploy-a-jekyll-site-locally-with-css-js-and-background-images-included
   ================================================== -->
+  {% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
+  {% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
+
+
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,700|Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.0/normalize.css">
-  <link rel="stylesheet" href="css/foundation.css">
-  <link rel="stylesheet" href="css/responsive-tables.css">
+  <link rel="stylesheet" href="{{ relative }}css/foundation.css">
+  <link rel="stylesheet" href="{{ relative }}css/responsive-tables.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/offcanvas.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{ relative }}css/offcanvas.css">
+  <link rel="stylesheet" href="{{ relative }}css/style.css">
 
   <!-- Ah, the favicon.
   ================================================== -->
@@ -33,8 +38,8 @@
   Twitter: https://dev.twitter.com/docs/cards/types/summary-card
   ============================== -->
   <meta property="og:title" content="{{ page.title }}"/>
-  <meta property="og:site_name" content="SITE NAME"/>
-  <meta property="og:url" content="http://URL"/>
+  <meta property="og:site_name" content=" - {{ site.name }}"/>
+  <meta property="og:url" content=" - {{ site.url }}"/>
   <meta property="og:description" content="{{ page.description }}"/>
   <!--<meta property="og:image" content="http://IMAGEURL"/> -->
   <meta name="twitter:card" content="summary">
@@ -57,7 +62,7 @@
         <ul class="title-area inline-list">
           <li class="toggle-topbar menu-icon show-for-small" ><a id="sidebarButton" href="#sidebar"><i class="icon-reorder icon-large"></i> </a></li>
           <li class="name">
-            <h1 id="site-title"><a href="/">my site</a></h1>
+            <h1 id="site-title"><a href="/">{{ site.brand }}</a></h1>
           </li>
         </ul>
       </div>
@@ -100,7 +105,7 @@
 
     <footer class="site-footer row" role="contentinfo">
       <div class="large-12 columns">
-        <p class="quiet copyright right"> <a href="https://twitter.com/daigofuji">@DaigoFuji</a>, 2013.</p>
+        <p class="quiet copyright right"> <a href="https://twitter.com/daigofuji"><i class="icon-twitter"></i> @DaigoFuji</a>, 2013.</p>
       </div>
     </footer>
   </div>
@@ -110,30 +115,14 @@
   <!-- Zepto (http://zeptojs.com/) is great, but I am sticking with jQuery. Sorry! -->
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="js/jquery.offcanvas.js"></script>
-  <script src="js/foundation.min.js"></script>
+  <script src="{{ relative }}js/jquery.offcanvas.js"></script>
+  <script src="{{ relative }}js/foundation.min.js"></script>
 
-  <!-- 
-  <script src="javascripts/foundation/jquery.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.reveal.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.orbit.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.forms.js"></script>
-  <script src="javascripts/foundation/jquery.placeholder.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.tooltips.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.alerts.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.buttons.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.accordion.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.navigation.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.mediaQueryToggle.js"></script>
-  <script src="javascripts/foundation/jquery.foundation.tabs.js"></script>
-  <script src="javascripts/jquery.offcanvas.js"></script>
-  <script src="javascripts/foundation/app.js"></script>
-  -->
   <script>
     $(document).foundation();
   </script>
-  <script src="js/responsive-tables.js"></script>
-  <script src="js/script.js"></script>
+  <script src="{{ relative }}js/responsive-tables.js"></script>
+  <script src="{{ relative }}js/script.js"></script>
 
 
 </body>

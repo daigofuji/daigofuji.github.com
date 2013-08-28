@@ -44,6 +44,24 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway','Helvetica Neue', Helvetica, Arial, sans-serif; 
 }
 
+/*	image replacement with custom logo just uncomment this part
+	http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/
+
+#site-title {
+    background-image: url(../img/logo.png);
+    height: 100px; 
+    width:  600px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+ */
+
+/* space above humberger */
+.toggle-topbar {
+	padding-top:1em;
+}
+
 /* list align issue */
 
 .disc > li, .square > li, .circle > li, ol > li {
