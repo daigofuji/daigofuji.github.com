@@ -1,15 +1,9 @@
 /* 
 	style.css 
 	Written by Daigo Fujiwara (@DaigoFuji)
-	Date: PUBLISHEDDATE
+	Date: Aug 2013
 	use this: http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml#CSS_Style_Rules
 	also: http://csslint.net/ (Will hurt your feelings)
-*/
-
-/* 
-	Those are already in html so no need, but just in case
-	@import url("http://fonts.googleapis.com/css?family=Lora:400,700,400italic|Stint+Ultra+Expanded");
-	@import url("css/font-awesome.min.css");
 */
 
 /* 
@@ -41,7 +35,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Raleway','Helvetica Neue', Helvetica, Arial, sans-serif; 
+  font-family: 'Stint Ultra Expanded', sans-serif; 
 }
 
 /*	image replacement with custom logo just uncomment this part
