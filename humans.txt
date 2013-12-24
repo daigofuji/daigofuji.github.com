@@ -5,12 +5,12 @@
 	Location: Boston, U.S.A.
 	
 /* THANKS */
-	Name: name or url
+	
 
 /* SITE */
 	Standards: HTML5, CSS3
-	Components: Foundation 4, jQuery, Orbit, Reveal
-	Software: Coda, Textmate, Git
+	Components: Foundation 5, jQuery, Compass, Jeckyll
+	Software: Sublime, Git
 
 /* Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA zurb.com */
 /* humanstxt.org */
