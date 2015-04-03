@@ -1,12 +1,3 @@
-/* 
-	scripts.js
-	Written by Daigo Fujiwara (@DaigoFuji)
-	Date: PUBLISHEDDATE
-	use this: http://jshint.com/
-*/
-
-
-$(document).ready(function() {
-  // code goes here...
-
-});
+// Foundation JavaScript
+// Documentation can be found at: http://foundation.zurb.com/docs
+$(document).foundation();
