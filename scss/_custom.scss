@@ -20,3 +20,91 @@ h1, h2, h3, h4, h5, h6 {
 .font-heavy {
 	font-weight: 800;
 }
+
+
+
+.section {
+	position: relative;
+}
+.item-bottom {
+	position: absolute;
+	bottom: 15vh;
+	text-align: right;
+}
+.item-bottom-0 {
+	position: absolute;
+	bottom: 0;
+}
+.slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7 {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.slide1 {
+	background: url(/images/hello-daigo.jpg) no-repeat center center; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+  	.hello {
+		color: #2c4712;
+		margin-top: 10vh;
+		text-shadow: 1px 1px 3px rgba(255, 255, 255, 1);
+	}
+	.pronounced {
+		color: #eee;
+		text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+	}
+}
+.slide2 {
+	.ido {
+		margin-top: 33vh;
+	}
+}
+.slide3 {
+	background: url(/images/baseball.jpg) no-repeat center center; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+		.ilikebaseball {
+		margin-top: 10vh;
+		color: #860a40;
+		text-shadow: 1px 1px 3px rgba(255, 255, 255, 1);
+	}
+}
+.talks li {
+	margin-bottom: rem-calc(10);
+}
+.slide5 {
+	background: #cdccbb;
+}
+.baseballhackday {
+	margin-top: 10vh;
+	a {
+		color: #7f2c2c;
+	}
+}
+.logo-container {
+	max-width: rem-calc(250);
+	margin: 1rem auto;
+	g {
+		fill: #7f2c2c;
+	}
+}
+.form-body {
+	height: 30vh;
+}
+.slide7 {
+	background: url(/images/daigo-fenway.jpg) no-repeat center bottom; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.quiet {
+	color: #eee;
+	text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
