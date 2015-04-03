@@ -11,5 +11,9 @@ $(document).foundation().ready(function() {
     animation: "fade",
     speed: 1250
   });
+  $(".slide3 .rotate").textrotator({
+    animation: "fade",
+    speed: 1250
+  });
 });
 
