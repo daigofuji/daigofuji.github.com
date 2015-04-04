@@ -6,22 +6,6 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-//helper for font weight
-//Open+Sans:400,700,800|Raleway:400,200,700
-.font-light {
-	font-weight: 200;
-}
-.font-weight-normal {
-	font-weight: 400;
-}
-.font-bold {
-	font-weight: 700;
-}
-.font-heavy {
-	font-weight: 800;
-}
-
-
 
 .section {
 	position: relative;
@@ -76,10 +60,14 @@ h1, h2, h3, h4, h5, h6 {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-		.ilikebaseball {
+	.ilikebaseball {
 		margin-top: 10vh;
 		color: #860a40;
 		text-shadow: 1px 1px 3px rgba(255, 255, 255, 1);
+	}
+	.job {
+		color: #eee;
+		text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 	}
 }
 .talks li {
@@ -94,16 +82,16 @@ h1, h2, h3, h4, h5, h6 {
 		color: #7f2c2c;
 	}
 }
+
 .logo-container {
+	width: 40vw;
 	max-width: rem-calc(250);
 	margin: 1rem auto;
 	g {
 		fill: #7f2c2c;
 	}
 }
-.form-body {
-	height: 30vh;
-}
+
 .slide7 {
 	background: url(/images/daigo-fenway.jpg) no-repeat center bottom; 
 	-webkit-background-size: cover;
@@ -111,6 +99,29 @@ h1, h2, h3, h4, h5, h6 {
 	-o-background-size: cover;
 	background-size: cover;
 }
+
+//helpers
+
+//helper for font weight
+//Open+Sans:400,700,800|Raleway:400,200,700
+.font-light {
+	font-weight: 200;
+}
+.font-weight-normal {
+	font-weight: 400;
+}
+.font-bold {
+	font-weight: 700;
+}
+.font-heavy {
+	font-weight: 800;
+}
+
+//colors
+.white {
+	color: white !important;
+}
+
 .quiet {
 	color: #eee;
 	text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
