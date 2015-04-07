@@ -1,3 +1,9 @@
+$red: #7f2c2c;
+
+.red {
+	color: $red;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 200;
 	@media #{$medium-up} {
@@ -79,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
 .baseballhackday {
 	margin-top: 10vh;
 	a {
-		color: #7f2c2c;
+		color: $red;
 	}
 }
 
@@ -88,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 	max-width: rem-calc(250);
 	margin: 1rem auto;
 	g {
-		fill: #7f2c2c;
+		fill: $red;
 	}
 }
 
