@@ -3,6 +3,12 @@ $red: #7f2c2c;
 .red {
 	color: $red;
 }
+a.red {
+	color: $red;
+	&:hover {
+		color: darken( $red, 10% )
+	}
+}
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 200;
@@ -12,6 +18,17 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
+.gray-text {
+	color: #444;
+	text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.9);
+	a {
+		color: #777;
+
+		&:hover {
+			color: #000;
+		}
+	}
+}
 
 .section {
 	position: relative;
@@ -26,23 +43,22 @@ h1, h2, h3, h4, h5, h6 {
 	position: absolute;
 	bottom: 0;
 }
-.slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7 {
-  background-size: cover;
-}
-
-
-.slide1 {
-	background: url(/images/hello-daigo.jpg) no-repeat center 0; 
+.slide1, .slide3, .slide7 {
+	transition: background-position .05s ease-in;
+	background-repeat: no-repeat;
+	background-position: 50% 0; // parallax from 50% -100px to 50% 0 to 50% 100px
 	background-size: cover;
 	background-attachment: fixed;
-  	.hello {
+}
+
+.slide1 {
+	transition: background-position .2s;
+	background-image: url(/images/hello-daigo.jpg);
+
+	.hello {
 		color: #2c4712;
 		margin-top: 10vh;
 		text-shadow: 1px 1px 3px rgba(255, 255, 255, 1);
-	}
-	.pronounced {
-		color: #eee;
-		text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 	}
 }
 .slide2 {
@@ -58,17 +74,12 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 .slide3 {
-	background: url(/images/baseball.jpg) no-repeat center center; 
-	background-size: cover;
-	background-attachment: fixed;
+	background-image: url(/images/baseball.jpg);
+
 	.ilikebaseball {
 		margin-top: 10vh;
 		color: #860a40;
 		text-shadow: 1px 1px 3px rgba(255, 255, 255, 1);
-	}
-	.job {
-		color: #eee;
-		text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 	}
 }
 .talks li {
@@ -94,15 +105,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .slide7 {
-	background: url(/images/daigo-fenway.jpg) no-repeat center 50%; 
-	background-size: cover;
-	background-attachment: fixed;
+	background-image: url(/images/daigo-fenway.jpg);
+
 }
 
 //helpers
 
 //helper for font weight
-//Open+Sans:400,700,800|Raleway:400,200,700
+//Open+Sans:400,700,800
 .font-light {
 	font-weight: 200;
 }
