@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
 	bottom: 0;
 }
 .slide1, .slide3, .slide7 {
-	transition: background-position .05s ease-in;
+	transition: background-position .05s ease;
 	background-repeat: no-repeat;
 	background-position: 50% 0; // parallax from 50% -100px to 50% 0 to 50% 100px
 	background-size: cover;
