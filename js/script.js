@@ -9,7 +9,7 @@ function simpleParallax() {
   var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
   // for each of content parallax element
-  $fwindow.on('scroll resize', function() {
+  $fwindow.on('scroll resize', _.throttle(function() {
     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     $("[data-parallax]").each(function (index, e) {
@@ -21,14 +21,14 @@ function simpleParallax() {
         pExit = e.offsetTop + e.offsetHeight;
 
       if (scrollTop > pEnter && scrollTop < pExit) {
-        var paraDiff = (scrollTop - pCenter) / pHeight * -150; //150 is speed control
+        var paraDiff = (scrollTop - pCenter) / pHeight * -100; //100 is speed control
         //console.log("active el is: ", $el, paraDiff);
-        var position = "50% " + paraDiff + "px"
-        $el.css("background-position", position)
+        var position = "50% " + paraDiff + "px";
+        $el.css("background-position", position);
       }
-    }); 
-
-  });
+    });
+  },
+  50));
 
 }
 
