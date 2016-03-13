@@ -27,18 +27,14 @@ h1, h2, h3, h4, h5, h6 {
 	bottom: 0;
 }
 .slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7 {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
 }
 
+
 .slide1 {
-	background: url(/images/hello-daigo.jpg) no-repeat center center; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
+	background: url(/images/hello-daigo.jpg) no-repeat center 0; 
 	background-size: cover;
+	background-attachment: fixed;
   	.hello {
 		color: #2c4712;
 		margin-top: 10vh;
@@ -63,10 +59,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 .slide3 {
 	background: url(/images/baseball.jpg) no-repeat center center; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
 	background-size: cover;
+	background-attachment: fixed;
 	.ilikebaseball {
 		margin-top: 10vh;
 		color: #860a40;
@@ -100,11 +94,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .slide7 {
-	background: url(/images/daigo-fenway.jpg) no-repeat center bottom; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
+	background: url(/images/daigo-fenway.jpg) no-repeat center 50%; 
 	background-size: cover;
+	background-attachment: fixed;
 }
 
 //helpers
