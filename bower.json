@@ -1,7 +1,6 @@
 {
   "name": "foundation-libsass-template",
   "dependencies": {
-    "foundation": "zurb/bower-foundation",
-    "fullpage.js": "~2.6.3"
+    "foundation": "zurb/bower-foundation"
   }
 }
