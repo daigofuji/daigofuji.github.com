@@ -82,7 +82,26 @@ h1, h2, h3, h4, h5, h6 {
 	align-items: center;
 	.wbur {
 		max-width: rem-calc(600);
+
+		.burlogo {
+			max-width: rem-calc(350);
+			margin: 5vh auto;
+		}
+		.burwork {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			a {
+				display: block;
+				min-width: rem-calc(150);
+				padding: 15px;
+				width: 33%;
+			}
+			
+		}
+
 	}
+
 }
 
 .slide3 {
