@@ -1,0 +1,45 @@
+
+
+
+
+
+/* colors */
+.bggray { color: #e8edf2; }
+.yellow { color: #fac229; }
+.dark-yellow { color: #e3801f; }
+.red { color: #f54f4f; }
+.dark-red { color: #a62633; }
+.blue { color: #73abf2; }
+.dark-blue { color: #323b93; }
+.darker-blue { color: #334e4a; }
+#map {
+  height: 100vh;
+  width: 100%;
+}
+.graphic {
+  font-family: 'Raleway', sans-serif;
+}
+.credit {
+  color: #999fa5;
+  font-size: 14px;
+  text-align: right;
+  margin: 0;
+  line-height: 1;
+}
+* {
+  box-sizing: border-box;
+}
+.leaflet-popup-content {
+  margin: 7px 10px;
+}
+.leaflet-popup-content h4 {
+  font-size:20px;
+  font-weight: 300;
+  margin: 0;
+}
+@media (min-width: 680px) {
+
+}
+@media (min-width: 1024px) {
+
+}
