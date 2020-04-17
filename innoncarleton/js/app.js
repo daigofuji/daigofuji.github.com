@@ -47,7 +47,6 @@
         var marker = L.marker([mkr[1], mkr[2]], {'icon': myIcon[mkr[7]]}).bindTooltip(mkr[0]).bindPopup('<h4>'+mkr[0]+'</h4>'+mkr[3]+'<br><b>Address: </b>'+mkr[4]+'<br/><b>Phone: </b>'+ mkr[5] +'<br/><b>Website: </b><a href="http://'+ webadd +'" target="_blank">' + webadd + '</a><br/><a href="https://www.google.com/maps/dir/?api=1&'+ mappara +'" target="_blank"><b>Open Map</b></a>').addTo(map);
       });
 
-
     });
 
 
