@@ -42,7 +42,13 @@
         iconSize: [40, 40],
         iconAnchor: [20, 40],
         popupAnchor: [0, -30]
-    });
+      });
+      myIcon['interest'] = L.icon({
+        iconUrl: 'img/interest.png',
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -30]
+      });
     //NOTE later add , {'icon': myIcon} after mkr[2]] on 36
 
       // place markers
