@@ -8,57 +8,112 @@ $description = "Bed and Breakfast in Portland, Maine.";
 
 <head>
   <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fafafa">
-  <meta name="referrer" content="no-referrer" />
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700;900&display=swap" rel="stylesheet">
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+    }
+    header {
+      margin: 0;
+      padding: 8px;
+    }
+    h1 {
+      font-size: 24px;
+      line-height: 28px;
+      margin: 0;
+    }
+    ul.tabs {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      margin: .25rem 0;
+      border-bottom: 1px solid black;
+    }
+    ul.tabs li {
+      margin: 0 .5rem;
+      padding: .5rem 1.5rem .5rem .7rem;
+      color: black;
+      background-color: white;
+      border: 2px solid #999;
+      border-radius: 0 10px 0 0;
+      border-bottom-width: 0;
+    }
+    ul.tabs a {
+      text-decoration: none;
+      color: black;
+      white-space: nowrap;
+    }
+    .inn-iframe {
+      width: 100vw;
+      height: calc(100vh - 105px);
+    }
   </style>
 </head>
 <body>  
 
+
+
+
     
   <!-- Primary Page Layout
   ================================================== -->
-  <div class="section padding-top-bottom-big over-hide">
-    <div class="parallax" style="background-image: url('img/1.jpg')"></div>
-    <div class="section z-bigger">    
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h2 class="mt-5 color-white text-center">Bed and Breakfast in Portland, Maine.</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <header>
+    <h1 class="">Places to stay in Portland, Maine.</h1>
+    <cite>
+      <?php 
+        date_default_timezone_set("America/New_York");
+        $today = date("l, F j, Y  h:ia");
 
-  <div class="section over-hide">
-    <div class="container">
-      <div class="col-12 mt-3 mb-5 pt-5 pb-3 text-center">
+        // if($_GET['checkin']) {
+        //   $checkin = date('Y-m-d', $_GET['checkin']);
+        // } else {
+        //   $checkin = date('Y-m-d', strtotime($today . ' + 2 days'));
+        // }
+        $checkin = date('Y-m-d', strtotime($today . ' + 2 days'));
+        $checkout = date('Y-m-d', strtotime( $checkin . ' + 2 days'));
+        echo "Time is " . $today;
+      ?>. 
+      <!-- Change checkout time to  -->
+      <!-- <input type="date" name="checkin" placeholder="select checkin" value="<?=$checkin?>"
+       min="<?= date('Y-m-d') ?>"> -->
 
-        <a href="#" class="btn btn-primary" id="thechadwick">The Chadwick</a>
-        <br><br>
-
-        <a href="#" class="btn btn-primary" id="innatparkspring">Inn at Park Spring </a>
-        <br><br>
-
-        <a href="#" class="btn btn-primary" id="westendbb">West End Inn </a>
-        <br><br>
-
-        <a href="#" class="btn btn-primary" id="mercuryinn">Mercury Inn</a>
-        <br><br>
-
-        <a href="#" class="btn btn-primary" id="innoncarleton">The Inn On Carleton</a>
-
-
-      </div>
-    </div>
-  </div>
+    </cite>
+    <section class="section over-hide">
+    <ul class="tabs">
+    <?php
+      $inns = array(
+        "thechadwick"=>"The Chadwick",
+        "innatparkspring"=>"Inn at Park Spring",
+        "westendbb"=>"West End Inn",
+        "innoncarleton"=>"The Inn On Carleton",
+        "thefrancismaine"=>"The Francis"
+      );
+      // "mercuryinn"=>"Mercury Inn",
 
 
+      foreach($inns as $id => $name) {
+        $url = "https://secure.thinkreservations.com/" . $id . "/reservations/availability?start_date=" . $checkin . "&end_date=" . $checkout;
+        echo '<li class="item"><a href="' . $url . '" target="frame">' . $name . '</a></li>';
+      }
+    ?>
+      <li class="item">
+        <a href="https://www.blindtigerportland.com/rooms?arrival=<?= $checkin ?>&departure=<?= $checkout ?>&adults=2" target="frame">Blind Tiger</a>
+      </li>
+      <li>
+        <a href="https://www.marriott.com/reservation/rateListMenu.mi?defaultTab=standard" target="frame">Press Hotel</a>
+      </li>
+    </ul>
+  </section>
+  </header>
 
+
+  <iframe id="frame" name="frame" class="inn-iframe" src="https://secure.thinkreservations.com/innoncarleton/reservations/availability?start_date=<?= $checkin ?>&end_date=<?= $checkout ?>" frameborder="0"></iframe>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
