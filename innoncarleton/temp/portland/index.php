@@ -1,6 +1,21 @@
 <?php
 $title = "Bed and Breakfast in Portland, Maine.";
 $description = "Bed and Breakfast in Portland, Maine.";
+$today = date("l, F j, Y  h:ia");
+
+if($_GET){
+  //do something if $_GET is set 
+  if($_GET['checkin']) {
+    $checkin = date('Y-m-d', strtotime($_GET['checkin']));
+  } else {
+    $checkin = date('Y-m-d', strtotime($today . ' + 2 days'));
+  }
+}
+if(!$_GET){
+//do something if $_GET is NOT set 
+  $checkin = date('Y-m-d', strtotime($today . ' + 2 days'));
+}
+
 ?>
 
 <!doctype html>
@@ -68,20 +83,11 @@ $description = "Bed and Breakfast in Portland, Maine.";
     <cite>
       <?php 
         date_default_timezone_set("America/New_York");
-        $today = date("l, F j, Y  h:ia");
-
-        // if($_GET['checkin']) {
-        //   $checkin = date('Y-m-d', $_GET['checkin']);
-        // } else {
-        //   $checkin = date('Y-m-d', strtotime($today . ' + 2 days'));
-        // }
-        $checkin = date('Y-m-d', strtotime($today . ' + 2 days'));
         $checkout = date('Y-m-d', strtotime( $checkin . ' + 2 days'));
         echo "Time is " . $today;
       ?>. 
       <!-- Change checkout time to  -->
-      <!-- <input type="date" name="checkin" placeholder="select checkin" value="<?=$checkin?>"
-       min="<?= date('Y-m-d') ?>"> -->
+      <input type="date" name="select-checkin" id="select-checkin" placeholder="select checkin" value="<?=$checkin?>" min="<?= date('Y-m-d') ?>">
 
     </cite>
     <section class="section over-hide">
@@ -118,6 +124,12 @@ $description = "Bed and Breakfast in Portland, Maine.";
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 <script>
+
+document.querySelector('#select-checkin').addEventListener('change', function (evt) {
+	console.log(evt.target.value); // The clicked element
+  window.location.assign(`index.php?checkin=${evt.target.value}`);
+});
+
   $('#thechadwick, #innatparkspring, #westendbb, #mercuryinn, #innoncarleton').on('click', function (ev) {
     ev.preventDefault();
     var innId = ev.currentTarget.id;
