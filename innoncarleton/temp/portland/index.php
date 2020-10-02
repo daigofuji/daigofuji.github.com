@@ -1,6 +1,8 @@
 <?php
 $title = "Bed and Breakfast in Portland, Maine.";
 $description = "Bed and Breakfast in Portland, Maine.";
+date_default_timezone_set("America/New_York");
+
 $today = date("l, F j, Y  h:ia");
 
 if($_GET){
@@ -10,11 +12,19 @@ if($_GET){
   } else {
     $checkin = date('Y-m-d', strtotime($today . ' + 2 days'));
   }
+  if($_GET['nights']) {
+    $nights = (int)$_GET['nights'];
+  } else {
+    $nights = 2;
+  }
 }
 if(!$_GET){
 //do something if $_GET is NOT set 
   $checkin = date('Y-m-d', strtotime($today . ' + 2 days'));
+  $nights = 2;
 }
+
+$checkout = date('Y-m-d', strtotime( $checkin . ' + ' . $nights .' days'));
 
 ?>
 
@@ -82,12 +92,12 @@ if(!$_GET){
     <h1 class="">Places to stay in Portland, Maine.</h1>
     <cite>
       <?php 
-        date_default_timezone_set("America/New_York");
-        $checkout = date('Y-m-d', strtotime( $checkin . ' + 2 days'));
         echo "Time is " . $today;
       ?>. 
       <!-- Change checkout time to  -->
       <input type="date" name="select-checkin" id="select-checkin" placeholder="select checkin" value="<?=$checkin?>" min="<?= date('Y-m-d') ?>">
+      <input type="number" id="select-nights" name="select-nights" min="1" max="5" value="<?=$nights?>">
+
 
     </cite>
     <section class="section over-hide">
@@ -97,7 +107,7 @@ if(!$_GET){
         "thechadwick"=>"The Chadwick",
         "innatparkspring"=>"Inn at Park Spring",
         "westendbb"=>"West End Inn",
-        "innoncarleton"=>"The Inn On Carleton",
+        "innoncarleton"=>"The Inn on Carleton",
         "thefrancismaine"=>"The Francis"
       );
       // "mercuryinn"=>"Mercury Inn",
@@ -108,6 +118,10 @@ if(!$_GET){
         echo '<li class="item"><a href="' . $url . '" target="frame">' . $name . '</a></li>';
       }
     ?>
+     <li class="item">
+        <a href="https://reserve2.resnexus.com/resnexus/reservations/lodging/B9D1F7A2-5EE6-4A56-8E97-66225D1AE697" target="frame">Morrill</a>
+      </li>
+    
       <li class="item">
         <a href="https://www.blindtigerportland.com/rooms?arrival=<?= $checkin ?>&departure=<?= $checkout ?>&adults=2" target="frame">Blind Tiger</a>
       </li>
@@ -122,32 +136,21 @@ if(!$_GET){
   <iframe id="frame" name="frame" class="inn-iframe" src="https://secure.thinkreservations.com/innoncarleton/reservations/availability?start_date=<?= $checkin ?>&end_date=<?= $checkout ?>" frameborder="0"></iframe>
 
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 <script>
 
+function reload() {
+  
+  const cin = document.querySelector('#select-checkin').value;
+  const nts = document.querySelector('#select-nights').value;
+  console.log('reload fired', cin, nts);
+  window.location.assign(`index.php?checkin=${cin}&nights=${nts}`);
+}
 document.querySelector('#select-checkin').addEventListener('change', function (evt) {
-	console.log(evt.target.value); // The clicked element
-  window.location.assign(`index.php?checkin=${evt.target.value}`);
+  reload()
 });
-
-  $('#thechadwick, #innatparkspring, #westendbb, #mercuryinn, #innoncarleton').on('click', function (ev) {
-    ev.preventDefault();
-    var innId = ev.currentTarget.id;
-    var timeClick = new Date();
-    console.log(timeClick);
-    var sDate = new Date(timeClick.getFullYear(), timeClick.getMonth(), (timeClick.getDate() + 3));
-    var eDate = new Date(timeClick.getFullYear(), timeClick.getMonth(), (timeClick.getDate() + 5));
-    console.log(sDate.toISOString().substring(0, 10), eDate.toISOString().substring(0, 10));
-    //convert it to yyyy-mm-dd
-    var startDate = sDate.toISOString().substring(0, 10);
-    var endDate = eDate.toISOString().substring(0, 10);
-
-    // console.log('https://secure.thinkreservations.com/innoncarleton/reservations/availability?start_date=' + startDate + '&end_date=' + endDate + '&number_of_adults=2&number_of_children=0&customer_group=&coupon_code=&room_id=&utm_source=innoncarleton.com&utm_medium=link&utm_campaign=website_cta&utm_content=cta-view-availability' )
-    var url = 'https://secure.thinkreservations.com/' + innId + '/reservations/availability?start_date=' + startDate + '&end_date=' + endDate + '&number_of_adults=2&number_of_children=0&customer_group=&coupon_code=&room_id=&utm_source=innoncarleton.com&utm_medium=link&utm_campaign=website_cta&utm_content=cta-view-availability';
-
-    window.open(url, '_blank')
-  });
-
+document.querySelector('#select-nights').addEventListener('change', function (evt) {
+  reload()
+});
 </script>
 
 </html>
