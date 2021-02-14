@@ -1,68 +1,50 @@
-(function($) {
-  $(document).ready( function() {
-
-  // Google Sheet API access
-  var sheetId = '1lFAM-VB__0gXh3SXp_uiMYIenkTsp0_qNs1szMgxhBY';
-  var sheetRange = 'Main!A2:H100';
-
-  var sheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/'+ sheetId +'/values/' + sheetRange + '?key=AIzaSyAsusWEfvRZtXywBO4ZzPZKfTpj2yPW58g';
-
-    $.getJSON(sheetUrl, function(data) {
-
-      var map = L.map('map').setView([43.651283, -70.271177], 15);
-
-      L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-        attribution: '<a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> <a href="http://cartodb.com/attributions" target="_blank">CartoDB</a> The Inn on Carleton',
-        maxZoom: 19,
-        minZoom: 13
-      }).addTo(map);
-
-      var myIcon = {};
-
-      myIcon['home'] = L.icon({
-          iconUrl: 'img/home.png',
-          iconSize: [40, 40],
-          iconAnchor: [20, 40],
-          popupAnchor: [0, -30]
-      });
-      myIcon['food'] = L.icon({
-          iconUrl: 'img/food.png',
-          iconSize: [40, 40],
-          iconAnchor: [20, 40],
-          popupAnchor: [0, -30]
-      });
-      myIcon['bar'] = L.icon({
-          iconUrl: 'img/bar.png',
-          iconSize: [40, 40],
-          iconAnchor: [20, 40],
-          popupAnchor: [0, -30]
-      });
-      myIcon['beer'] = L.icon({
-        iconUrl: 'img/beer.png',
-        iconSize: [40, 40],
-        iconAnchor: [20, 40],
-        popupAnchor: [0, -30]
-      });
-      myIcon['interest'] = L.icon({
-        iconUrl: 'img/interest.png',
-        iconSize: [40, 40],
-        iconAnchor: [20, 40],
-        popupAnchor: [0, -30]
-      });
-    //NOTE later add , {'icon': myIcon} after mkr[2]] on 36
-
-      // place markers
-      data.values.forEach(function(mkr, index) {
-        var mappara = 'destination='+mkr[0]+' '+mkr[4];
-        // console.log(mappara);
-        var webadd = mkr[6] ? mkr[6].replace('http://','').replace('https://','') : '';
-        var marker = L.marker([mkr[1], mkr[2]], {'icon': myIcon[mkr[7]]}).bindTooltip(mkr[0]).bindPopup('<h4>'+mkr[0]+'</h4>'+mkr[3]+'<br><b>Address: </b>'+mkr[4]+'<br/><b>Phone: </b>'+ mkr[5] +'<br/><b>Website: </b><a href="http://'+ webadd +'" target="_blank">' + webadd + '</a><br/><a href="https://www.google.com/maps/dir/?api=1&'+ mappara +'" target="_blank"><b>Open Map</b></a>').addTo(map);
-      });
-
-    });
-
-
-    // fire height change on display change
-  }); //end document ready
-
-})(jQuery);
+const sheetId = '1lFAM-VB__0gXh3SXp_uiMYIenkTsp0_qNs1szMgxhBY';
+const sheetRange = 'Main!A2:H100';
+const sheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/'+ sheetId +'/values/' + sheetRange + '?key=AIzaSyAsusWEfvRZtXywBO4ZzPZKfTpj2yPW58g';
+fetch(sheetUrl).then(function (response) {
+  if (response.ok) {
+    return response.json();
+  }
+  return Promise.reject(response);
+}).then(function (data) {
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZGFpZ29mdWppIiwiYSI6ImNrbDVseWhocDFpaDQyb3FpN2ZreGpwMG0ifQ.H8ZodKo0yz8E36_P3ewCnw';
+  var mymap = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
+    center: [-70.271177,43.651283], // starting position [lng, lat], 
+    zoom: 15 // starting zoom
+  });
+  const colors = ['#8dd3c7','#fb8072','#fdb462','#80b1d3','#b3de69'];
+  const types = ['home','food','bar','beer','interest'];
+  // baked it in html
+  // const mapkeyEle = document.querySelector('#mapkey');
+  // create a type-color key from above
+  // types.forEach((type, index) => {
+  //   const item = document.createElement('li');
+  //   const span = document.createElement('span');
+  //   span.style.backgroundColor = colors[index];
+  //   item.textContent = type;
+  //   item.prepend(span);
+  //   mapkeyEle.appendChild(item)
+  // });
+  mymap.addControl(new mapboxgl.NavigationControl());
+  //debug
+  // mymap.on('click', function (e) {
+  //   console.log(e.lngLat.lat, e.lngLat.lng)
+  // });
+  data.values.map(function(mkr, index) {
+    if(index !== 0 && mkr[1] && mkr[2]) {
+      const phonehtml = mkr[5] ? `<br/>Phone: <b><a href="tel:${mkr[5]}">${mkr[5]}</a></b>` : '';
+      const popup = new mapboxgl.Popup({ offset: [0,-15]}).setHTML(`<h3 class="maptext"><a href="${mkr[6]}" target="_blank">${mkr[0]}</a></h3> ${mkr[3]} <a href="${mkr[6]}" target="_blank">Visit Website</a><br>
+      Address: <a href="https://www.google.com/maps/dir/?api=1&destination=${mkr[0]} ${mkr[4]}" target="_blank"><b>${mkr[4]}</b> (Map)</a>
+      ${phonehtml}`);
+      const makerColor = colors[types.indexOf(mkr[7])];
+      const marker = new mapboxgl.Marker({ color: makerColor, scale: 0.6})
+        .setLngLat([mkr[2],mkr[1]])
+        .setPopup(popup)
+        .addTo(mymap);
+    }
+  })
+}).catch(function (err) {
+  console.warn('Something went wrong.', err);
+});

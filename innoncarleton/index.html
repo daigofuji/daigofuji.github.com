@@ -5,18 +5,91 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css">
-    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
+    <style>
+      .graphic {
+        font-family: 'Montserrat', Arial Narrow, Helvetica, sans-serif;
+        line-height: 1;
+      }
+      .graphic a, .graphic a:visited {
+        color: rgba(35, 157, 219, 1);
+        text-decoration: none;
+        outline-width: 0;
+      }
+      .graphic a:hover {
+        color: rgba(35, 157, 219, 1);
+        text-decoration: underline;
+      }
+      /* a:visited, a:hover {
+        color: #767676;
+      } */
+      #map {
+        height: 100vh;
+        font-family: 'Montserrat', Arial Narrow, Helvetica, sans-serif;
+      }
+      .mapkey {
+        position: absolute;
+        max-width: 85%;
+        top: 10px;
+        left: 10px;
+        padding: 8px;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        background: #ffffffcc;
+      }
+      .mapkey li {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+      }
+      .mapkey li span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 6px;
+        margin: 0 2px 0 4px;
+      }
+      .maptext {
+        margin: 6px 0;
+        font-size: 15px;
+      }
+      #map .maptext a {
+        color: #555;
+      }
+      #map .maptext a:hover {
+        color:rgba(35, 157, 219, 1);
+      }
+      #map .mapboxgl-popup {
+        width: 200px;
+      }
+
+      @media (min-width: 600px) {
+
+      }
+      @media (min-width: 1400px) {
+
+      }
+    </style>
     <title>Emerge Hospitality -- Map </title>
   </head>
 
   <body class="graphic">
     <div id="map"></div>
-
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <ul class="mapkey" id="mapkey">
+      <li>KEY:</li>
+      <li><span style="background-color: rgb(141, 211, 199);"></span>The Inn on Carleton</li>
+      <li><span style="background-color: rgb(251, 128, 114);"></span>Restaurants</li>
+      <li><span style="background-color: rgb(253, 180, 98);"></span>Cocktails</li>
+      <li><span style="background-color: rgb(128, 177, 211);"></span>Breweries</li>
+      <li><span style="background-color: rgb(179, 222, 105);"></span>Points of Interest</li>
+    </ul>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
     <script src="js/app.js"></script>
 
   </body>
