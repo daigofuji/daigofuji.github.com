@@ -55,20 +55,52 @@
         border-radius: 6px;
         margin: 0 2px 0 4px;
       }
-      .maptext {
-        margin: 6px 0;
+      .mapkey li span.home {
+        width: 12px;
+        height: 12px;
+        background-image: url('img/Carleton-map-v2.png');
+        background-size: cover;
+        box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.6);
+      }
+      .graphic #map .infoname {
+        margin: 6px 0 3px;
         font-size: 15px;
       }
-      #map .maptext a {
+      .graphic #map .infoname a {
         color: #555;
       }
-      #map .maptext a:hover {
+      .graphic #map .infoname a:hover {
         color:rgba(35, 157, 219, 1);
       }
-      #map .mapboxgl-popup {
-        width: 200px;
+      .graphic #map .mapboxgl-popup {
+        width: 220px;
+        padding: 0 6px;
       }
+      .graphic #map .infodesc {
+        margin-bottom: 3px;
+      }
+      .graphic #map .infodesc a {
+       text-decoration: underline;
+      }
+      .graphic #map .infoaddress, #map .infophone {
+        color: #ccc;
+        margin-bottom: 3px;
+      }
+      .graphic #map .infoaddress b, #map .infophone b {
 
+      }
+      .graphic #map .innoncarleton {
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-image: url('img/Carleton-map-v2@2x.png');
+        background-size: cover;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        padding: 0;
+        box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.6);
+      }
       @media (min-width: 600px) {
 
       }
@@ -76,6 +108,9 @@
 
       }
     </style>
+    <link rel="icon" href="https://www.innoncarleton.com/wp-content/uploads/cropped-unnamed-1-1.png" sizes="32x32" />
+    <link rel="icon" href="https://www.innoncarleton.com/wp-content/uploads/cropped-unnamed-1-1.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://www.innoncarleton.com/wp-content/uploads/cropped-unnamed-1-1.png" />
     <title>Emerge Hospitality -- Map </title>
   </head>
 
@@ -83,7 +118,7 @@
     <div id="map"></div>
     <ul class="mapkey" id="mapkey">
       <li>KEY:</li>
-      <li><span style="background-color: rgb(141, 211, 199);"></span>The Inn on Carleton</li>
+      <li><span class="home"></span>The Inn on Carleton</li>
       <li><span style="background-color: rgb(251, 128, 114);"></span>Restaurants</li>
       <li><span style="background-color: rgb(253, 180, 98);"></span>Cocktails</li>
       <li><span style="background-color: rgb(128, 177, 211);"></span>Breweries</li>

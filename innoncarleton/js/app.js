@@ -34,15 +34,31 @@ fetch(sheetUrl).then(function (response) {
   // });
   data.values.map(function(mkr, index) {
     if(index !== 0 && mkr[1] && mkr[2]) {
-      const phonehtml = mkr[5] ? `<br/>Phone: <b><a href="tel:${mkr[5]}">${mkr[5]}</a></b>` : '';
-      const popup = new mapboxgl.Popup({ offset: [0,-15]}).setHTML(`<h3 class="maptext"><a href="${mkr[6]}" target="_blank">${mkr[0]}</a></h3> ${mkr[3]} <a href="${mkr[6]}" target="_blank">Visit Website</a><br>
-      Address: <a href="https://www.google.com/maps/dir/?api=1&destination=${mkr[0]} ${mkr[4]}" target="_blank"><b>${mkr[4]}</b> (Map)</a>
-      ${phonehtml}`);
+      const phonehtml = mkr[5]
+      ? `<div class="infophone">Phone: <b><a href="tel:${mkr[5]}">${mkr[5]}</a></b></div>`
+      : '';
+
+      const popup = new mapboxgl.Popup().setHTML(`
+        <h3 class="infoname">
+          <a href="${mkr[6]}" target="_blank">${mkr[0]}</a>
+        </h3>
+        <div class="infodesc">${mkr[3]} <a href="${mkr[6]}" target="_blank">Visit Website</a></div>
+        <div class="infoaddress">Address: <a href="https://www.google.com/maps/dir/?api=1&destination=${mkr[0]} ${mkr[4]}" target="_blank"><b>${mkr[4]}</b> (Map)</a></div>
+        ${phonehtml}`);
       const makerColor = colors[types.indexOf(mkr[7])];
-      const marker = new mapboxgl.Marker({ color: makerColor, scale: 0.6})
-        .setLngLat([mkr[2],mkr[1]])
-        .setPopup(popup)
-        .addTo(mymap);
+      
+      
+      if(mkr[7] === 'home') {
+        const el = document.createElement('div');
+        el.className = 'innoncarleton';
+        const marker = new mapboxgl.Marker(el)
+          .setLngLat([mkr[2],mkr[1]])
+          .setPopup(popup).addTo(mymap);
+      } else {
+        const marker = new mapboxgl.Marker({ color: makerColor, scale: 1 })
+          .setLngLat([mkr[2],mkr[1]])
+          .setPopup(popup).addTo(mymap);
+      }
     }
   })
 }).catch(function (err) {
