@@ -7,3 +7,4 @@ bower_components/modernizr/media/
 node_module/.bin/
 node_module/**/.bin/
 package-lock.json
+node_modules
