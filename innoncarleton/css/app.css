@@ -32,6 +32,101 @@
   font-weight: 300;
   margin: 0;
 }
+#restaurant-table {
+  margin: 5px 0;
+}
+.table-control {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom:5px;
+}
+button {
+  background-color: #f7f7f7;
+  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.3);
+  border: none;
+  border-radius: 2px;
+  padding: 6px 6px 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+input.search {
+  padding: 4px 6px 2px;
+} 
+#restaurant-table table {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+}
+#restaurant-table table tr:nth-child(even) {
+  background-color: #f7f7f5;
+}
+
+#restaurant-table table th {
+  background-color: #f7f7f7;
+  font-size: 10px;
+  color: #666;
+}
+
+#restaurant-table table th,
+#restaurant-table table td {
+  padding: 3px 5px 2px;
+  vertical-align: top;
+}
+#restaurant-table table td {
+  font-size: 12px;
+  padding: 2px;
+}
+#restaurant-table table .type {
+ display: none;
+}
+#restaurant-table table th {
+  font-size: 12px;
+  padding: 2px;
+}
+#restaurant-table table td.name {
+  font-size: 14px;
+  font-weight: bold;
+}
+#restaurant-table table td.name .phone {
+  font-size: 11px;
+  font-weight: 400;
+  display: block;
+  margin: 5px 0 10px;
+  color: #666;
+}
+#restaurant-table table td.name .phone:hover {
+  text-decoration: underline;
+}
+#restaurant-table ul.pagination {
+  list-style: none;
+  margin: 10px auto;
+  padding: 5px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#restaurant-table ul.pagination li {
+  background:#f7f7f7;
+  padding: 2px 4px;
+}
+#restaurant-table ul.pagination li.disabled {
+  background: none;
+}
+#restaurant-table ul.pagination li.disabled a {
+  pointer-events: none;
+}
+#restaurant-table ul.pagination li a {
+  color:#000;
+  padding: 2px 4px;
+  text-decoration: none;
+}
+#restaurant-table ul.pagination li.active {
+  background: #ccc;
+}
 @media (min-width: 680px) {
 
 }

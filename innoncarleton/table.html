@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
+    <style>
+      .graphic {
+        font-family: 'Montserrat', Arial Narrow, Helvetica, sans-serif;
+        line-height: 1;
+      }
+      .graphic a, .graphic a:visited {
+        color: rgba(35, 157, 219, 1);
+        text-decoration: none;
+        outline-width: 0;
+      }
+      .graphic a:hover {
+        color: rgba(35, 157, 219, 1);
+        text-decoration: underline;
+      }
+      /* a:visited, a:hover {
+        color: #767676;
+      } */
+      #map {
+        height: 100vh;
+        font-family: 'Montserrat', Arial Narrow, Helvetica, sans-serif;
+      }
+      .mapkey {
+        position: absolute;
+        max-width: 85%;
+        top: 10px;
+        left: 10px;
+        padding: 8px;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        background: #ffffffcc;
+      }
+      .mapkey li {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+      }
+      .mapkey li span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 6px;
+        margin: 0 2px 0 4px;
+      }
+      .mapkey li span.home {
+        width: 12px;
+        height: 12px;
+        background-image: url('img/Carleton-map-v2.png');
+        background-size: cover;
+        box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.6);
+      }
+      .graphic #map .infoname {
+        margin: 6px 0 3px;
+        font-size: 15px;
+      }
+      .graphic #map .infoname a {
+        color: #555;
+      }
+      .graphic #map .infoname a:hover {
+        color:rgba(35, 157, 219, 1);
+      }
+      .graphic #map .mapboxgl-popup {
+        width: 220px;
+        padding: 0 6px;
+      }
+      .graphic #map .infodesc {
+        margin-bottom: 3px;
+      }
+      .graphic #map .infodesc a {
+       text-decoration: underline;
+      }
+      .graphic #map .infoaddress, #map .infophone {
+        color: #ccc;
+        margin-bottom: 3px;
+      }
+      .graphic #map .infoaddress b, #map .infophone b {
+
+      }
+      .graphic #map .innoncarleton {
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-image: url('img/Carleton-map-v2@2x.png');
+        background-size: cover;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        padding: 0;
+        box-shadow: 3px 3px 5px 1px rgba(0,0,0,0.6);
+      }
+      @media (min-width: 600px) {
+
+      }
+      @media (min-width: 1400px) {
+
+      }
+    </style>
+    <link rel="icon" href="https://www.innoncarleton.com/wp-content/uploads/cropped-unnamed-1-1.png" sizes="32x32" />
+    <link rel="icon" href="https://www.innoncarleton.com/wp-content/uploads/cropped-unnamed-1-1.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://www.innoncarleton.com/wp-content/uploads/cropped-unnamed-1-1.png" />
+    <title>Emerge Hospitality -- Recommended places by The Inn on Carleton </title>
+  </head>
+
+  <body class="graphic">
+    <div id="restaurant-table">
+      <div class="table-control">
+        <input class="search" placeholder="Search" />
+        <!-- <button class="sort" data-sort="name">
+          Sort by Name
+        </button> -->
+        <button style="background-color: rgb(253, 180, 98);" onclick="window.listtable.search('food', ['type'])">
+          Restaurants
+        </button>
+        <button style="background-color: rgb(128, 177, 211);" onclick="window.listtable.search('bar', ['type'])">
+          Cocktails
+        </button>
+        <button style="background-color: rgb(179, 222, 105);" onclick="window.listtable.search('beer', ['type'])">
+          Breweries
+        </button>
+        <button style="background-color: rgb(251, 128, 114);" onclick="window.listtable.search('interest', ['type'])">
+          Points of Interest
+        </button>
+      </div>
+      <table>
+        <caption></caption>
+        <thead>
+          <tr>
+            <th class="type">Type</th>
+            <th>Name/Phone</th>
+            <th>Description</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody class="list">
+        </tbody>
+      </table>
+      <ul class="pagination"></ul>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
+
+    <script>
+    const sheetId = '1lFAM-VB__0gXh3SXp_uiMYIenkTsp0_qNs1szMgxhBY';
+    const sheetRange = 'Main!A2:H100';
+    const sheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/'+ sheetId +'/values/' + sheetRange + '?key=AIzaSyAsusWEfvRZtXywBO4ZzPZKfTpj2yPW58g';
+    fetch(sheetUrl).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    }).then(function (data) {
+      const mytable = document.querySelector('#restaurant-table table tbody');
+
+      const restaurants = data.values;
+      restaurants.map(function(spot, index) {
+        console.log(spot)
+
+        // add to table
+        const row = document.createElement('tr');
+        row.setAttribute('class', `t${spot[7]}`);
+        
+        const celltype = document.createElement('td');
+        celltype.setAttribute('class', 'type');
+        celltype.textContent = spot[7];
+        row.append(celltype);
+
+        const cellname = document.createElement('td');
+        cellname.setAttribute('class', 'name');
+        cellname.innerHTML = `<a target="_new" href="${spot[6]}">${spot[0]}</a><a href="tel:${spot[5]}" class="phone">${spot[5]}</a>`;
+        row.append(cellname);
+
+        const celldesc = document.createElement('td');
+        celldesc.setAttribute('class', 'desc');
+        celldesc.textContent = spot[3];
+        row.append(celldesc);
+
+        const celladress = document.createElement('td');
+        celladress.setAttribute('class', 'adress');
+        celladress.innerHTML = `<a target="_new" href="https://www.google.com/maps/dir/?api=1&destination=${spot[0]} ${spot[4]}">${spot[4]}</a>`;
+        row.append(celladress);
+
+        mytable.append(row);
+
+      });
+
+      var tableoptions = {
+        valueNames: [ 'type', 'name', 'description', 'address'],
+        page: 12,
+        pagination: [{
+          innerWindow: 15
+        }]
+      };
+      window.listtable = new List('restaurant-table', tableoptions);
+      window.listtable.search('food', ['type']);
+
+    }).catch(function (err) {
+      console.warn('Something went wrong.', err);
+    });
+
+    </script>
+
+  </body>
+</html>
