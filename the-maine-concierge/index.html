@@ -5,22 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
     <style>
       .graphic {
-        font-family: 'Montserrat', Arial Narrow, Helvetica, sans-serif;
+        font-family: 'Open Sans', sans-serif;
         line-height: 1;
       }
       .graphic a, .graphic a:visited {
-        color: rgba(35, 157, 219, 1);
+        color: #323b93;
         text-decoration: none;
         outline-width: 0;
       }
       .graphic a:hover {
-        color: rgba(35, 157, 219, 1);
+        color: #323b93;
         text-decoration: underline;
       }
       /* a:visited, a:hover {
@@ -28,7 +32,7 @@
       } */
       #map {
         height: 100vh;
-        font-family: 'Montserrat', Arial Narrow, Helvetica, sans-serif;
+        font-family: 'Open Sans', sans-serif;
       }
       .mapkey {
         position: absolute;
@@ -58,7 +62,7 @@
       .mapkey li span.home {
         width: 12px;
         height: 12px;
-        background-image: url('img/Carleton-map-v2.png');
+        background-image: url('img/w.png');
         background-size: cover;
         box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.6);
       }
@@ -70,7 +74,7 @@
         color: #555;
       }
       .graphic #map .infoname a:hover {
-        color:rgba(35, 157, 219, 1);
+        color:#323b93;
       }
       .graphic #map .mapboxgl-popup {
         width: 220px;
@@ -93,7 +97,7 @@
         display: block;
         width: 50px;
         height: 50px;
-        background-image: url('img/Carleton-map-v2@2x.png');
+        background-image: url('img/w.png');
         background-size: cover;
         border: none;
         border-radius: 50%;
@@ -108,9 +112,10 @@
 
       }
     </style>
-    <link rel="icon" href="https://www.innoncarleton.com/wp-content/uploads/cropped-unnamed-1-1.png" sizes="32x32" />
-    <link rel="icon" href="https://www.innoncarleton.com/wp-content/uploads/cropped-unnamed-1-1.png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="https://www.innoncarleton.com/wp-content/uploads/cropped-unnamed-1-1.png" />
+    <link
+    href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
+    rel="stylesheet"
+    />
     <title>Emerge Hospitality -- Map </title>
   </head>
 
@@ -118,13 +123,15 @@
     <div id="map"></div>
     <ul class="mapkey" id="mapkey">
       <li>KEY:</li>
-      <li><span class="home"></span>The Inn on Carleton</li>
+      <li><span class="home"></span>The Concierge</li>
       <li><span style="background-color: rgb(251, 128, 114);"></span>Restaurants</li>
       <li><span style="background-color: rgb(253, 180, 98);"></span>Cocktails</li>
       <li><span style="background-color: rgb(128, 177, 211);"></span>Breweries</li>
       <li><span style="background-color: rgb(179, 222, 105);"></span>Points of Interest</li>
+      <li><a href="./table.html">Table View</a></li>
     </ul>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
     <script src="js/app.js"></script>
 
   </body>

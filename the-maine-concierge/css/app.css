@@ -11,6 +11,7 @@
   height: 100vh;
   width: 100%;
 }
+
 .graphic {
   font-family: 'Raleway', sans-serif;
 }
@@ -118,6 +119,7 @@ input.search {
 }
 #restaurant-table ul.pagination li.disabled a {
   pointer-events: none;
+  color: #323b93;
 }
 #restaurant-table ul.pagination li a {
   color:#000;
