@@ -73,7 +73,7 @@ fetch(sheetUrl).then(function (response) {
   // console.log(features);
 
   mymap.on('load', () => {
-    mymap.loadImage('../img/marker.png', (error, image) => {
+    mymap.loadImage('https://daigofuji.github.io/the-maine-concierge/img/marker.png', (error, image) => {
       if (error) throw error;
       mymap.addImage('marker-png', image, { 'sdf': true });
 
