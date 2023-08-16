@@ -40,7 +40,17 @@ fetch(sheetUrl).then(function (response) {
       showUserHeading: true
     })
   );
-  mymap.addControl(new mapboxgl.ScaleControl());
+
+  // add home icon
+  const el = document.createElement('div');
+  el.className = 'innoncarleton';
+  const homeMarker = new mapboxgl.Marker(el)
+    .setLngLat([-70.26349189, 43.65497226])
+    .addTo(mymap);
+  mymap.addControl(new mapboxgl.ScaleControl({
+    maxWidth: 100,
+    unit: 'imperial'
+  }));
 
   // create a geojson future for points
 
@@ -98,11 +108,14 @@ fetch(sheetUrl).then(function (response) {
           ],
           'text-offset': [0, 0.5],
           'text-anchor': 'top',
+          'text-allow-overlap': true,
+          'text-size': 13,
         },
         'paint': {
           'icon-color': ['get', 'color'],
         }
       });
+
       mymap.on('click', 'places', (e) => {
         // Copy coordinates array.
         const coordinates = e.features[0].geometry.coordinates.slice();
